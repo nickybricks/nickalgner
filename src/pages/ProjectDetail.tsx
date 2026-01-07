@@ -86,11 +86,11 @@ const ProjectDetail = () => {
             <CarouselContent className="-ml-0">
               {project.images.map((image, index) => (
                 <CarouselItem key={index} className="pl-0">
-                  <div className="overflow-hidden rounded-2xl shadow-lg">
+                  <div className="overflow-hidden rounded-2xl shadow-lg bg-muted aspect-video flex items-center justify-center">
                     <img
                       src={image}
                       alt={`${project.name} - Image ${index + 1}`}
-                      className="h-auto w-full object-cover aspect-video"
+                      className="max-h-full max-w-full object-contain"
                       loading={index === 0 ? 'eager' : 'lazy'}
                       draggable={false}
                     />
@@ -229,12 +229,12 @@ const ProjectDetail = () => {
                 {project.images.slice(4).map((image, index) => (
                   <div
                     key={index}
-                    className="overflow-hidden rounded-xl shadow-md"
+                    className="overflow-hidden rounded-xl shadow-md bg-muted aspect-video flex items-center justify-center"
                   >
                     <img
                       src={image}
                       alt={`${project.name} - Image ${index + 5}`}
-                      className="h-auto w-full object-cover"
+                      className="max-h-full max-w-full object-contain"
                       loading="lazy"
                     />
                   </div>
