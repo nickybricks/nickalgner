@@ -17,7 +17,7 @@ import aesy6 from '@/assets/aesy-6.png';
 import aesy7 from '@/assets/aesy-7.png';
 import aesy8 from '@/assets/aesy-8.png';
 import aesy9 from '@/assets/aesy-9.png';
-import architectMockup from '@/assets/project-architect-mockup.jpg';
+
 import aivaChat from '@/assets/aiva-chat.png';
 import aivaChatConversation from '@/assets/aiva-chat-conversation.png';
 import aivaWorkflowOverview from '@/assets/aiva-workflow-overview.png';
@@ -96,30 +96,6 @@ export const projects: Project[] = [
         'Development of an AI-powered analysis system based on Warren Buffett criteria',
         'Designing complex data visualizations for financial metrics',
         'Building a screener for over 7000 stocks with extensive filter options',
-      ],
-    },
-  },
-  {
-    id: '3',
-    slug: 'architekt-homepage',
-    name: 'Architekt Homepage',
-    url: 'https://arch-showcase-folio.lovable.app',
-    thumbnail: architectMockup,
-    images: [architectMockup, architectMockup, architectMockup],
-    description: {
-      de: 'Eine elegante Portfolio-Website für Architekten. Die Seite präsentiert Projekte in einem minimalistischen, aber eindrucksvollen Design und hebt die Arbeit des Architekten hervor.',
-      en: 'An elegant portfolio website for architects. The site presents projects in a minimalist yet impressive design, highlighting the architect\'s work.',
-    },
-    challenges: {
-      de: [
-        'Erstellen eines visuell ansprechenden Layouts für Architekturfotos',
-        'Optimierung der Bildladezeiten bei hoher Qualität',
-        'SEO-Optimierung für lokale Suchanfragen',
-      ],
-      en: [
-        'Creating a visually appealing layout for architectural photos',
-        'Optimizing image loading times while maintaining high quality',
-        'SEO optimization for local search queries',
       ],
     },
   },
