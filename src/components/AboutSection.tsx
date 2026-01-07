@@ -1,5 +1,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import profileImage from '@/assets/profile-nick.png';
+import { Linkedin } from 'lucide-react';
 
 export const AboutSection = () => {
   const { language } = useLanguage();
@@ -67,15 +68,25 @@ export const AboutSection = () => {
             </div>
 
             {/* Contact */}
-            <div className="pt-4">
+            <div className="pt-4 flex items-center gap-4">
               <a
                 href="mailto:nick@algner.de"
                 className="text-primary hover:text-primary/80 transition-colors font-medium"
               >
                 nick@algner.de
               </a>
-              <span className="text-muted-foreground mx-2">•</span>
+              <span className="text-muted-foreground">•</span>
               <span className="text-muted-foreground">{t.location}</span>
+              <span className="text-muted-foreground">•</span>
+              <a
+                href="https://www.linkedin.com/in/nick-algner/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={20} />
+              </a>
             </div>
           </div>
         </div>
