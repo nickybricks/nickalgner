@@ -92,7 +92,7 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
         ]}
         className="w-full touch-pan-y"
       >
-        <CarouselContent className="-ml-0 pb-2">
+        <CarouselContent className="-ml-0 pb-8">
           {projects.map((project) => (
             <CarouselItem key={project.id} className="pl-0">
               <article
