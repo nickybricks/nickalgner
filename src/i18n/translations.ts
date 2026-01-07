@@ -5,6 +5,7 @@ export const translations = {
     header: {
       title: 'Nick Algner',
       subtitle: 'Projekte',
+      about: 'Über mich',
     },
     projects: {
       title: 'Meine Projekte',
@@ -24,6 +25,7 @@ export const translations = {
     header: {
       title: 'Nick Algner',
       subtitle: 'Projects',
+      about: 'About',
     },
     projects: {
       title: 'My Projects',
