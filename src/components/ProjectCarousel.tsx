@@ -115,7 +115,7 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                   <h2 className="text-xl font-semibold text-card-foreground">
                     {project.name}
                   </h2>
-                  <p className="mt-2 text-sm text-muted-foreground">
+                  <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
                     {project.description[language]}
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary transition-colors group-hover:text-primary/80">
