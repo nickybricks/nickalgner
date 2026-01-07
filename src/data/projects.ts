@@ -3,7 +3,15 @@ import wichty2 from '@/assets/wichty-2.png';
 import wichty3 from '@/assets/wichty-3.png';
 import wichty4 from '@/assets/wichty-4.png';
 import wichty5 from '@/assets/wichty-5.png';
-import aesyMockup from '@/assets/project-aesy-mockup.jpg';
+import aesy1 from '@/assets/aesy-1.png';
+import aesy2 from '@/assets/aesy-2.png';
+import aesy3 from '@/assets/aesy-3.png';
+import aesy4 from '@/assets/aesy-4.png';
+import aesy5 from '@/assets/aesy-5.png';
+import aesy6 from '@/assets/aesy-6.png';
+import aesy7 from '@/assets/aesy-7.png';
+import aesy8 from '@/assets/aesy-8.png';
+import aesy9 from '@/assets/aesy-9.png';
 import architectMockup from '@/assets/project-architect-mockup.jpg';
 
 export interface Project {
@@ -55,22 +63,24 @@ export const projects: Project[] = [
     slug: 'aesy',
     name: 'Aesy',
     url: 'https://aesy.lovable.app',
-    thumbnail: aesyMockup,
-    images: [aesyMockup, aesyMockup, aesyMockup],
+    thumbnail: aesy1,
+    images: [aesy1, aesy4, aesy6, aesy5, aesy8, aesy9, aesy2, aesy3, aesy7],
     description: {
-      de: 'Aesy vereinfacht komplexe Prozesse und macht sie für jeden zugänglich. Die Anwendung wurde entwickelt, um Zeit zu sparen und Effizienz zu steigern.',
-      en: 'Aesy simplifies complex processes and makes them accessible to everyone. The application was developed to save time and increase efficiency.',
+      de: 'Aesy analysiert Aktien nach bewährten Investmentprinzipien. In drei einfachen Schritten zur professionellen Aktienanalyse mit KI-Unterstützung nach Buffett-Kriterien.',
+      en: 'Aesy analyzes stocks based on proven investment principles. Professional stock analysis in three simple steps with AI support using Buffett criteria.',
     },
     challenges: {
       de: [
-        'Gestaltung einer intuitiven Benutzeroberfläche',
-        'Sicherstellung der Datensicherheit',
-        'Entwicklung eines responsiven Designs für alle Bildschirmgrößen',
+        'Integration von Echtzeit-Finanzdaten aus verschiedenen Börsen (NYSE, NASDAQ, XETRA)',
+        'Entwicklung eines KI-gestützten Analyse-Systems nach Warren Buffett Kriterien',
+        'Gestaltung komplexer Datenvisualisierungen für Finanzkennzahlen',
+        'Aufbau eines Screeners für über 7000 Aktien mit umfangreichen Filteroptionen',
       ],
       en: [
-        'Designing an intuitive user interface',
-        'Ensuring data security',
-        'Developing a responsive design for all screen sizes',
+        'Integration of real-time financial data from various exchanges (NYSE, NASDAQ, XETRA)',
+        'Development of an AI-powered analysis system based on Warren Buffett criteria',
+        'Designing complex data visualizations for financial metrics',
+        'Building a screener for over 7000 stocks with extensive filter options',
       ],
     },
   },
