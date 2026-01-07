@@ -1,4 +1,8 @@
-import wichtyMockup from '@/assets/project-wichty-mockup.jpg';
+import wichty1 from '@/assets/wichty-1.png';
+import wichty2 from '@/assets/wichty-2.png';
+import wichty3 from '@/assets/wichty-3.png';
+import wichty4 from '@/assets/wichty-4.png';
+import wichty5 from '@/assets/wichty-5.png';
 import aesyMockup from '@/assets/project-aesy-mockup.jpg';
 import architectMockup from '@/assets/project-architect-mockup.jpg';
 
@@ -25,22 +29,24 @@ export const projects: Project[] = [
     slug: 'wichty',
     name: 'Wichty',
     url: 'https://www.wichty.com',
-    thumbnail: wichtyMockup,
-    images: [wichtyMockup, wichtyMockup, wichtyMockup],
+    thumbnail: wichty1,
+    images: [wichty1, wichty2, wichty3, wichty4, wichty5],
     description: {
-      de: 'Wichty ist eine innovative Plattform, die Menschen verbindet und den Alltag einfacher macht. Mit einem Fokus auf Benutzerfreundlichkeit und modernem Design bietet Wichty eine nahtlose Erfahrung.',
-      en: 'Wichty is an innovative platform that connects people and simplifies everyday life. With a focus on user-friendliness and modern design, Wichty offers a seamless experience.',
+      de: 'Wichty ist die einfachste App für Sportvereine, Turniere und private Partys. Events organisieren ohne Chaos – in 3 Minuten startklar.',
+      en: 'Wichty is the easiest app for sports clubs, tournaments, and private parties. Organize events without chaos – ready in 3 minutes.',
     },
     challenges: {
       de: [
         'Entwicklung einer skalierbaren Architektur für wachsende Nutzerzahlen',
         'Optimierung der Performance für mobile Geräte',
-        'Integration verschiedener Drittanbieter-Services',
+        'Integration verschiedener Drittanbieter-Services wie Google Auth',
+        'Gestaltung einer intuitiven Event-Erstellung in wenigen Schritten',
       ],
       en: [
         'Developing a scalable architecture for growing user numbers',
         'Optimizing performance for mobile devices',
-        'Integrating various third-party services',
+        'Integrating various third-party services like Google Auth',
+        'Designing an intuitive event creation flow in just a few steps',
       ],
     },
   },
