@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header';
 import { ProjectCarousel } from '@/components/ProjectCarousel';
+import { AboutSection } from '@/components/AboutSection';
 import { projects } from '@/data/projects';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -15,6 +16,7 @@ const Index = () => {
         </h2>
         <ProjectCarousel projects={projects} />
       </main>
+      <AboutSection />
     </div>
   );
 };
