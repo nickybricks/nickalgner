@@ -18,6 +18,16 @@ import aesy7 from '@/assets/aesy-7.png';
 import aesy8 from '@/assets/aesy-8.png';
 import aesy9 from '@/assets/aesy-9.png';
 import architectMockup from '@/assets/project-architect-mockup.jpg';
+import aivaChat from '@/assets/aiva-chat.png';
+import aivaChatConversation from '@/assets/aiva-chat-conversation.png';
+import aivaWorkflowOverview from '@/assets/aiva-workflow-overview.png';
+import aivaWorkflowOrder from '@/assets/aiva-workflow-order.png';
+import aivaWorkflowFeedback from '@/assets/aiva-workflow-feedback.png';
+import aivaWorkflowRefund from '@/assets/aiva-workflow-refund.png';
+import aivaAgentPrompt from '@/assets/aiva-agent-prompt.png';
+import aivaTools from '@/assets/aiva-tools.png';
+import aivaAnalytics from '@/assets/aiva-analytics.png';
+import aivaCode from '@/assets/aiva-code.png';
 
 export interface Project {
   id: string;
@@ -110,6 +120,34 @@ export const projects: Project[] = [
         'Creating a visually appealing layout for architectural photos',
         'Optimizing image loading times while maintaining high quality',
         'SEO optimization for local search queries',
+      ],
+    },
+  },
+  {
+    id: '4',
+    slug: 'aiva',
+    name: 'VENICEBEAUTY Aiva',
+    url: 'https://venicebeauty.de',
+    thumbnail: aivaChat,
+    images: [aivaChat, aivaChatConversation, aivaWorkflowOverview, aivaWorkflowOrder, aivaWorkflowFeedback, aivaWorkflowRefund, aivaAgentPrompt, aivaTools, aivaAnalytics, aivaCode],
+    description: {
+      de: 'Aiva ist ein KI-gestützter Kundensupport-Chatbot für VENICEBEAUTY. Der Bot bearbeitet Bestellanfragen, Stornierungen und Produktfragen automatisiert über WooCommerce-Integration.',
+      en: 'Aiva is an AI-powered customer support chatbot for VENICEBEAUTY. The bot handles order inquiries, cancellations, and product questions automatically via WooCommerce integration.',
+    },
+    challenges: {
+      de: [
+        'Integration mit WooCommerce API für Echtzeit-Bestelldaten',
+        'Entwicklung komplexer Conversation Flows für verschiedene Kundenanfragen',
+        'Anbindung an Gorgias Ticketing-System für Eskalationen',
+        'Implementierung von Stripe und PayPal Refund-Funktionen',
+        'Training des AI-Agenten mit produktspezifischem Wissen',
+      ],
+      en: [
+        'Integration with WooCommerce API for real-time order data',
+        'Development of complex conversation flows for various customer inquiries',
+        'Connection to Gorgias ticketing system for escalations',
+        'Implementation of Stripe and PayPal refund functions',
+        'Training the AI agent with product-specific knowledge',
       ],
     },
   },
