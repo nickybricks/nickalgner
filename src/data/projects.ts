@@ -3,6 +3,11 @@ import wichty2 from '@/assets/wichty-2.png';
 import wichty3 from '@/assets/wichty-3.png';
 import wichty4 from '@/assets/wichty-4.png';
 import wichty5 from '@/assets/wichty-5.png';
+import wichtyLandingHero from '@/assets/wichty-landing-hero.png';
+import wichtyEventErstellen from '@/assets/wichty-event-erstellen.png';
+import wichtyErkunden from '@/assets/wichty-erkunden.png';
+import wichtyMeineEvents from '@/assets/wichty-meine-events.png';
+import wichtyLogin from '@/assets/wichty-login.png';
 import aesy1 from '@/assets/aesy-1.png';
 import aesy2 from '@/assets/aesy-2.png';
 import aesy3 from '@/assets/aesy-3.png';
@@ -38,7 +43,7 @@ export const projects: Project[] = [
     name: 'Wichty',
     url: 'https://www.wichty.com',
     thumbnail: wichty1,
-    images: [wichty1, wichty2, wichty3, wichty4, wichty5],
+    images: [wichty1, wichty2, wichty3, wichty4, wichty5, wichtyLandingHero, wichtyEventErstellen, wichtyErkunden, wichtyMeineEvents, wichtyLogin],
     description: {
       de: 'Wichty ist die einfachste App für Sportvereine, Turniere und private Partys. Events organisieren ohne Chaos – in 3 Minuten startklar.',
       en: 'Wichty is the easiest app for sports clubs, tournaments, and private parties. Organize events without chaos – ready in 3 minutes.',
