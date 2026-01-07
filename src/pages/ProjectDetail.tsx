@@ -12,6 +12,7 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
+import { ImageLightbox } from '@/components/ImageLightbox';
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -19,6 +20,8 @@ const ProjectDetail = () => {
   const { language, t } = useLanguage();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const project = getProjectBySlug(slug || '');
 
@@ -43,6 +46,11 @@ const ProjectDetail = () => {
     },
     [api]
   );
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   if (!project) {
     return (
@@ -86,7 +94,10 @@ const ProjectDetail = () => {
             <CarouselContent className="-ml-0">
               {project.images.map((image, index) => (
                 <CarouselItem key={index} className="pl-0">
-                  <div className="overflow-hidden rounded-2xl shadow-lg bg-muted aspect-video flex items-center justify-center">
+                  <div 
+                    className="overflow-hidden rounded-2xl shadow-lg bg-muted aspect-video flex items-center justify-center cursor-zoom-in"
+                    onClick={() => openLightbox(index)}
+                  >
                     <img
                       src={image}
                       alt={`${project.name} - Image ${index + 1}`}
@@ -165,7 +176,8 @@ const ProjectDetail = () => {
               {project.images.slice(0, 4).map((image, index) => (
                 <div
                   key={index}
-                  className="overflow-hidden rounded-2xl shadow-lg"
+                  className="overflow-hidden rounded-2xl shadow-lg cursor-zoom-in hover:opacity-90 transition-opacity"
+                  onClick={() => openLightbox(index)}
                 >
                   <img
                     src={image}
@@ -229,7 +241,8 @@ const ProjectDetail = () => {
                 {project.images.slice(4).map((image, index) => (
                   <div
                     key={index}
-                    className="overflow-hidden rounded-xl shadow-md bg-muted aspect-video flex items-center justify-center"
+                    className="overflow-hidden rounded-xl shadow-md bg-muted aspect-video flex items-center justify-center cursor-zoom-in hover:opacity-90 transition-opacity"
+                    onClick={() => openLightbox(index + 4)}
                   >
                     <img
                       src={image}
@@ -244,6 +257,15 @@ const ProjectDetail = () => {
           )}
         </div>
       </main>
+
+      {/* Lightbox */}
+      <ImageLightbox
+        images={project.images}
+        initialIndex={lightboxIndex}
+        open={lightboxOpen}
+        onOpenChange={setLightboxOpen}
+        projectName={project.name}
+      />
     </div>
   );
 };
