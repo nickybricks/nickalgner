@@ -6,7 +6,7 @@ export const Header = () => {
   const { t } = useLanguage();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-white/5 backdrop-blur-xl">
+    <header className="w-full border-b border-border/50 bg-background">
       <div className="container flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex flex-col hover:opacity-80 transition-opacity">
           <h1 className="text-lg font-semibold tracking-tight text-foreground">
