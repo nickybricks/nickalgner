@@ -57,7 +57,7 @@ export const ImageLightbox = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-background/95 backdrop-blur-sm border-none">
+      <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-background/95 backdrop-blur-sm border-none rounded-lg">
         <button
           onClick={() => onOpenChange(false)}
           className="absolute right-4 top-4 z-50 rounded-full bg-background/80 p-2 text-foreground hover:bg-background transition-colors"
