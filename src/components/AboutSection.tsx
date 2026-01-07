@@ -1,6 +1,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import profileImage from '@/assets/profile-nick.png';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, Github } from 'lucide-react';
 
 export const AboutSection = () => {
   const { language } = useLanguage();
@@ -86,6 +86,15 @@ export const AboutSection = () => {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
+              </a>
+              <a
+                href="https://github.com/nickybricks"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="GitHub"
+              >
+                <Github size={20} />
               </a>
             </div>
           </div>
