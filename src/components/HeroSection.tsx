@@ -13,18 +13,27 @@ export const HeroSection = () => {
   return (
     <section className="min-h-[85vh] flex flex-col items-center justify-center px-4 relative overflow-hidden">
       {/* Animated gradient background */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-gradient-shift"
-          style={{ animationDelay: '0s' }}
+          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[100px] animate-gradient-shift opacity-40"
+          style={{ 
+            background: 'radial-gradient(circle, hsl(38 50% 75%) 0%, transparent 70%)',
+            animationDelay: '0s' 
+          }}
         />
         <div 
-          className="absolute top-1/3 right-1/4 w-80 h-80 bg-primary/15 rounded-full blur-3xl animate-gradient-shift"
-          style={{ animationDelay: '-20s' }}
+          className="absolute top-[20%] right-[15%] w-[400px] h-[400px] rounded-full blur-[100px] animate-gradient-shift opacity-35"
+          style={{ 
+            background: 'radial-gradient(circle, hsl(30 40% 80%) 0%, transparent 70%)',
+            animationDelay: '-20s' 
+          }}
         />
         <div 
-          className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-gradient-shift"
-          style={{ animationDelay: '-40s' }}
+          className="absolute bottom-[15%] left-[25%] w-[450px] h-[450px] rounded-full blur-[100px] animate-gradient-shift opacity-30"
+          style={{ 
+            background: 'radial-gradient(circle, hsl(45 45% 78%) 0%, transparent 70%)',
+            animationDelay: '-40s' 
+          }}
         />
       </div>
 
