@@ -9,6 +9,7 @@ export const translations = {
     },
     hero: {
       tagline: 'Digitale Produkte, die funktionieren.',
+      viewProjects: 'Projekte ansehen',
     },
     projects: {
       title: 'Projekte',
@@ -32,6 +33,7 @@ export const translations = {
     },
     hero: {
       tagline: 'Building digital products that matter.',
+      viewProjects: 'View Projects',
     },
     projects: {
       title: 'Projects',
