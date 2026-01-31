@@ -57,7 +57,7 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-background">
         <Header />
         <div className="container flex flex-col items-center justify-center px-4 py-20">
-          <h1 className="text-2xl font-bold text-foreground">Project not found</h1>
+          <h1 className="text-2xl font-light text-foreground">Project not found</h1>
           <Button variant="ghost" onClick={() => navigate('/')} className="mt-4">
             <ArrowLeft className="mr-2 h-4 w-4" />
             {t.projectDetail.back}
@@ -70,16 +70,15 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="container px-4 py-6">
-        {/* Back Button */}
-        <Button
-          variant="ghost"
+      <main className="container px-4 py-8 md:py-12 md:px-6 animate-fade-in">
+        {/* Back Button - minimal */}
+        <button
           onClick={() => navigate('/')}
-          className="mb-4 -ml-2 text-muted-foreground hover:text-foreground"
+          className="mb-8 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
         >
-          <ArrowLeft className="mr-2 h-4 w-4" />
+          <ArrowLeft className="h-4 w-4" />
           {t.projectDetail.back}
-        </Button>
+        </button>
 
         {/* Mobile: Image Carousel */}
         <div className="lg:hidden">
@@ -95,7 +94,7 @@ const ProjectDetail = () => {
               {project.images.map((image, index) => (
                 <CarouselItem key={index} className="pl-0">
                   <div 
-                    className="overflow-hidden rounded-2xl shadow-lg bg-muted aspect-video flex items-center justify-center cursor-zoom-in"
+                    className="overflow-hidden rounded-2xl bg-muted aspect-video flex items-center justify-center cursor-zoom-in"
                     onClick={() => openLightbox(index)}
                   >
                     <img
@@ -111,17 +110,17 @@ const ProjectDetail = () => {
             </CarouselContent>
           </Carousel>
 
-          {/* Bullet Navigation */}
-          <div className="flex justify-center gap-2 mt-4">
+          {/* Bullet Navigation - smaller and subtle */}
+          <div className="flex justify-center gap-2 mt-6">
             {project.images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => scrollTo(index)}
                 className={cn(
-                  'h-2 rounded-full transition-all duration-300',
+                  'h-1.5 rounded-full transition-all duration-500',
                   current === index
                     ? 'w-6 bg-primary'
-                    : 'w-2 bg-muted-foreground/30'
+                    : 'w-1.5 bg-muted-foreground/20 hover:bg-muted-foreground/40'
                 )}
                 aria-label={`Go to image ${index + 1}`}
               />
@@ -129,11 +128,11 @@ const ProjectDetail = () => {
           </div>
 
           {/* Mobile Content */}
-          <div className="mt-6">
-            <h1 className="text-2xl font-bold text-foreground">
+          <div className="mt-10 space-y-6">
+            <h1 className="text-2xl md:text-3xl font-light text-foreground">
               {project.name}
             </h1>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="text-base leading-relaxed text-muted-foreground">
               {project.description[language]}
             </p>
 
@@ -141,42 +140,46 @@ const ProjectDetail = () => {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex"
+              className="inline-flex"
             >
-              <Button className="gap-2">
+              <Button variant="outline" className="gap-2 rounded-full">
                 {t.projectDetail.visitWebsite}
                 <ExternalLink className="h-4 w-4" />
               </Button>
             </a>
 
-            <section className="mt-8 pb-8">
-              <h2 className="text-lg font-semibold text-foreground">
+            {/* Challenges as numbered list */}
+            <section className="pt-6 pb-12">
+              <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-6">
                 {t.projectDetail.challenges}
               </h2>
-              <ul className="mt-3 space-y-2">
+              <ol className="space-y-4">
                 {project.challenges[language].map((challenge, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-3 text-sm text-muted-foreground"
+                    className="flex items-start gap-4 text-muted-foreground"
                   >
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                    <span>{challenge}</span>
+                    <span className="text-sm font-medium text-primary/60 mt-0.5">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-sm leading-relaxed">{challenge}</span>
                   </li>
                 ))}
-              </ul>
+              </ol>
             </section>
           </div>
         </div>
 
-        {/* Desktop: Two Column Layout */}
+        {/* Desktop: Two Column Layout with more whitespace */}
         <div className="hidden lg:block">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-            {/* Left Column - Images */}
-            <div className="space-y-4">
+          <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+            {/* Left Column - Images with more spacing */}
+            <div className="space-y-8">
               {project.images.slice(0, 4).map((image, index) => (
                 <div
                   key={index}
-                  className="overflow-hidden rounded-2xl shadow-lg cursor-zoom-in hover:opacity-90 transition-opacity"
+                  className="overflow-hidden rounded-2xl cursor-zoom-in hover:opacity-95 transition-opacity duration-300 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
                   onClick={() => openLightbox(index)}
                 >
                   <img
@@ -189,13 +192,13 @@ const ProjectDetail = () => {
               ))}
             </div>
 
-            {/* Right Column - Content */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <div>
-                <h1 className="text-3xl font-bold text-foreground md:text-4xl">
+            {/* Right Column - Content with generous spacing */}
+            <div className="lg:sticky lg:top-24 lg:self-start space-y-8">
+              <div className="space-y-6 animate-fade-in-up">
+                <h1 className="text-4xl lg:text-5xl font-light text-foreground">
                   {project.name}
                 </h1>
-                <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+                <p className="text-lg leading-relaxed text-muted-foreground">
                   {project.description[language]}
                 </p>
 
@@ -203,45 +206,48 @@ const ProjectDetail = () => {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex"
+                  className="inline-flex"
                 >
-                  <Button className="gap-2">
+                  <Button variant="outline" className="gap-2 rounded-full">
                     {t.projectDetail.visitWebsite}
                     <ExternalLink className="h-4 w-4" />
                   </Button>
                 </a>
               </div>
 
-              <section className="mt-10">
-                <h2 className="text-xl font-semibold text-foreground">
+              {/* Challenges as numbered list - japanese style */}
+              <section className="pt-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+                <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-8">
                   {t.projectDetail.challenges}
                 </h2>
-                <ul className="mt-4 space-y-3">
+                <ol className="space-y-5">
                   {project.challenges[language].map((challenge, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-3 text-muted-foreground"
+                      className="flex items-start gap-5 text-muted-foreground"
                     >
-                      <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
-                      <span>{challenge}</span>
+                      <span className="text-sm font-medium text-primary/60 mt-0.5">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="leading-relaxed">{challenge}</span>
                     </li>
                   ))}
-                </ul>
+                </ol>
               </section>
             </div>
           </div>
 
           {/* Full Width Gallery - Remaining Images */}
           {project.images.length > 4 && (
-            <section className="mt-12 pb-12">
-              <h2 className="text-xl font-semibold text-foreground mb-4">
+            <section className="mt-20 pb-16">
+              <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-8">
                 {t.projectDetail.gallery}
               </h2>
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-8 md:grid-cols-2">
                 {project.images.slice(4).map((image, index) => (
                   <div
                     key={index}
-                    className="overflow-hidden rounded-xl shadow-md bg-muted aspect-video flex items-center justify-center cursor-zoom-in hover:opacity-90 transition-opacity"
+                    className="overflow-hidden rounded-2xl bg-muted aspect-video flex items-center justify-center cursor-zoom-in hover:opacity-95 transition-opacity duration-300"
                     onClick={() => openLightbox(index + 4)}
                   >
                     <img
