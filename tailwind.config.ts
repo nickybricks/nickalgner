@@ -87,6 +87,11 @@ export default {
         'slide-up': {
           from: { transform: 'translateY(8px)', opacity: '0' },
           to: { transform: 'translateY(0)', opacity: '1' }
+        },
+        'gradient-shift': {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '33%': { transform: 'translate(30px, -20px) scale(1.05)' },
+          '66%': { transform: 'translate(-20px, 15px) scale(0.95)' }
         }
       },
       animation: {
@@ -95,7 +100,8 @@ export default {
         'fade-in': 'fade-in 0.5s ease-out forwards',
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         'fade-in-down': 'fade-in-down 0.4s ease-out forwards',
-        'slide-up': 'slide-up 0.4s ease-out forwards'
+        'slide-up': 'slide-up 0.4s ease-out forwards',
+        'gradient-shift': 'gradient-shift 60s ease-in-out infinite',
       },
       fontFamily: {
         sans: [
