@@ -1,6 +1,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import profileImage from '@/assets/profile-nick.png';
-import { Linkedin, Github } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 
 export const AboutSection = () => {
   const { language } = useLanguage();
@@ -27,11 +27,11 @@ export const AboutSection = () => {
   const t = content[language];
 
   return (
-    <section className="py-8">
-      <div className="container px-4">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-start">
-          {/* Image */}
-          <div className="aspect-[4/3] overflow-hidden rounded-xl">
+    <section className="py-12 md:py-20 animate-fade-in">
+      <div className="container px-4 md:px-6">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+          {/* Image with soft shadow */}
+          <div className="aspect-[4/3] overflow-hidden rounded-2xl md:rounded-3xl shadow-lg animate-fade-in-up">
             <img
               src={profileImage}
               alt="Nick Algner"
@@ -39,63 +39,68 @@ export const AboutSection = () => {
             />
           </div>
 
-          {/* Content */}
-          <div className="space-y-4">
-            <h1 className="text-3xl font-bold text-foreground md:text-4xl">
+          {/* Content with generous spacing */}
+          <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground">
               {t.title}
             </h1>
             
-            <p className="text-lg text-foreground font-medium">
-              {t.intro}
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              {t.passion}
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              {t.journey}
-            </p>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p className="text-lg font-medium text-foreground">
+                {t.intro}
+              </p>
+              <p>
+                {t.passion}
+              </p>
+              <p>
+                {t.journey}
+              </p>
+            </div>
             
-            {/* Skills */}
+            {/* Skills - border-only style */}
             <div className="flex flex-wrap gap-2 pt-4">
               {t.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-full"
+                  className="px-4 py-1.5 text-sm border border-border text-muted-foreground rounded-full hover:border-primary hover:text-primary transition-colors duration-300"
                 >
                   {skill}
                 </span>
               ))}
             </div>
 
-            {/* Contact */}
-            <div className="pt-4 flex items-center gap-4">
+            {/* Contact - minimal and elegant */}
+            <div className="pt-6 flex flex-wrap items-center gap-6 text-sm">
               <a
                 href="mailto:nick@algner.de"
-                className="text-primary hover:text-primary/80 transition-colors font-medium"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
               >
-                nick@algner.de
+                <Mail className="h-4 w-4" />
+                <span>nick@algner.de</span>
               </a>
-              <span className="text-muted-foreground">•</span>
+              <span className="text-border hidden md:inline">|</span>
               <span className="text-muted-foreground">{t.location}</span>
-              <span className="text-muted-foreground">•</span>
-              <a
-                href="https://www.linkedin.com/in/nick-algner/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="https://github.com/nickybricks"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={20} />
-              </a>
+              <span className="text-border hidden md:inline">|</span>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.linkedin.com/in/nick-algner/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://github.com/nickybricks"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                  aria-label="GitHub"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -7,8 +7,11 @@ export const translations = {
       subtitle: 'Projekte',
       about: 'Über mich',
     },
+    hero: {
+      tagline: 'Digitale Produkte, die funktionieren.',
+    },
     projects: {
-      title: 'Meine Projekte',
+      title: 'Projekte',
       viewProject: 'Projekt ansehen',
     },
     projectDetail: {
@@ -27,8 +30,11 @@ export const translations = {
       subtitle: 'Projects',
       about: 'About',
     },
+    hero: {
+      tagline: 'Building digital products that matter.',
+    },
     projects: {
-      title: 'My Projects',
+      title: 'Projects',
       viewProject: 'View Project',
     },
     projectDetail: {
