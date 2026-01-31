@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { ProjectGrid } from '@/components/ProjectGrid';
+import { BackgroundTexture } from '@/components/BackgroundTexture';
 import { projects } from '@/data/projects';
 import { useLanguage } from '@/context/LanguageContext';
 import { PageTransition } from '@/components/PageTransition';
@@ -10,7 +11,9 @@ const Index = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background relative">
+        {/* Global Japanese-inspired texture overlay */}
+        <BackgroundTexture />
         <Header />
         
         {/* Hero Section - Fullscreen with typography focus */}
