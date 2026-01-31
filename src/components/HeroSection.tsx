@@ -15,24 +15,23 @@ export const HeroSection = () => {
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div 
-          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[100px] animate-gradient-shift opacity-40"
+          className="absolute -top-20 -left-20 w-[600px] h-[600px] rounded-full blur-[120px] animate-gradient-shift"
           style={{ 
-            background: 'radial-gradient(circle, hsl(38 50% 75%) 0%, transparent 70%)',
-            animationDelay: '0s' 
+            background: 'radial-gradient(circle, rgba(201, 168, 108, 0.4) 0%, transparent 70%)',
           }}
         />
         <div 
-          className="absolute top-[20%] right-[15%] w-[400px] h-[400px] rounded-full blur-[100px] animate-gradient-shift opacity-35"
+          className="absolute top-1/4 -right-20 w-[500px] h-[500px] rounded-full blur-[120px] animate-gradient-shift"
           style={{ 
-            background: 'radial-gradient(circle, hsl(30 40% 80%) 0%, transparent 70%)',
-            animationDelay: '-20s' 
+            background: 'radial-gradient(circle, rgba(210, 180, 140, 0.35) 0%, transparent 70%)',
+            animationDelay: '-20s',
           }}
         />
         <div 
-          className="absolute bottom-[15%] left-[25%] w-[450px] h-[450px] rounded-full blur-[100px] animate-gradient-shift opacity-30"
+          className="absolute -bottom-20 left-1/3 w-[550px] h-[550px] rounded-full blur-[120px] animate-gradient-shift"
           style={{ 
-            background: 'radial-gradient(circle, hsl(45 45% 78%) 0%, transparent 70%)',
-            animationDelay: '-40s' 
+            background: 'radial-gradient(circle, rgba(220, 190, 130, 0.3) 0%, transparent 70%)',
+            animationDelay: '-40s',
           }}
         />
       </div>
