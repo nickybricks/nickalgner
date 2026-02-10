@@ -45,17 +45,17 @@ export const Header = () => {
 
   return (
     <>
-      {/* Fixed name - liquid glass pill */}
-      <div className="fixed top-4 left-4 md:left-6 z-50">
-        <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm hover:bg-white/90 transition-all duration-300">
+      {/* Name - fixed on desktop, static on mobile */}
+      <div className="px-4 md:px-0 pt-4 md:pt-0 md:fixed md:top-4 md:left-6 md:z-50">
+        <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full md:bg-white/70 md:backdrop-blur-xl md:border md:border-border/50 md:shadow-sm md:hover:bg-white/90 transition-all duration-300">
           <span className="text-sm font-medium tracking-tight text-foreground">
             {t.header.title}
           </span>
         </Link>
       </div>
 
-      {/* Floating pill nav - sticky header */}
-      <nav className="fixed top-4 right-4 md:right-6 z-50 flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5">
+      {/* Nav pills - bottom on mobile, top-right on desktop */}
+      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:bottom-auto md:left-auto md:translate-x-0 md:top-4 md:right-6 z-50 flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5">
         {NAV_SECTIONS.map((section) => (
           <button
             key={section}
@@ -69,12 +69,14 @@ export const Header = () => {
             {t.header[section]}
           </button>
         ))}
-        <div className="w-px h-5 bg-border/50 mx-1" />
-        <LanguageToggle />
+        <div className="hidden md:block w-px h-5 bg-border/50 mx-1" />
+        <div className="hidden md:block">
+          <LanguageToggle />
+        </div>
       </nav>
 
-      {/* Spacer for content */}
-      <div className="h-16" />
+      {/* Desktop spacer */}
+      <div className="hidden md:block h-16" />
     </>
   );
 };
