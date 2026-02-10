@@ -19,8 +19,22 @@ export const HeroSection = () => {
   useEffect(() => {
     checkScroll();
     const el = scrollRef.current;
-    el?.addEventListener('scroll', checkScroll);
-    return () => el?.removeEventListener('scroll', checkScroll);
+    if (!el) return;
+    el.addEventListener('scroll', checkScroll);
+
+    let scrollTimeout: ReturnType<typeof setTimeout>;
+    const handleScrollShow = () => {
+      el.classList.add('scrolling');
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => el.classList.remove('scrolling'), 1000);
+    };
+    el.addEventListener('scroll', handleScrollShow);
+
+    return () => {
+      el.removeEventListener('scroll', checkScroll);
+      el.removeEventListener('scroll', handleScrollShow);
+      clearTimeout(scrollTimeout);
+    };
   }, []);
 
   const scrollRight = () => {
@@ -40,12 +54,12 @@ export const HeroSection = () => {
             className="flex gap-4 md:gap-6 overflow-x-auto pb-4 px-4 md:px-6 auto-hide-scrollbar"
           >
             <style>{`
-              .auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; }
-              .auto-hide-scrollbar:hover { scrollbar-color: hsl(var(--border)) transparent; }
+              .auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color 0.3s; }
+              .auto-hide-scrollbar:active, .auto-hide-scrollbar.scrolling { scrollbar-color: hsl(var(--border)) transparent; }
               .auto-hide-scrollbar::-webkit-scrollbar { height: 6px; }
               .auto-hide-scrollbar::-webkit-scrollbar-track { background: transparent; }
-              .auto-hide-scrollbar::-webkit-scrollbar-thumb { background: transparent; border-radius: 3px; }
-              .auto-hide-scrollbar:hover::-webkit-scrollbar-thumb { background: hsl(var(--border)); }
+              .auto-hide-scrollbar::-webkit-scrollbar-thumb { background: transparent; border-radius: 3px; transition: background 0.3s; }
+              .auto-hide-scrollbar:active::-webkit-scrollbar-thumb, .auto-hide-scrollbar.scrolling::-webkit-scrollbar-thumb { background: hsl(var(--border)); }
               @media (min-width: 768px) {
                 .auto-hide-scrollbar { scrollbar-width: none; }
                 .auto-hide-scrollbar::-webkit-scrollbar { display: none; }
