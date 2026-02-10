@@ -45,17 +45,45 @@ export const Header = () => {
 
   return (
     <>
-      {/* Name - fixed on desktop, static on mobile */}
-      <div className="px-4 md:px-0 pt-4 md:pt-0 md:fixed md:top-4 md:left-6 md:z-50">
-        <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full md:bg-white/70 md:backdrop-blur-xl md:border md:border-border/50 md:shadow-sm md:hover:bg-white/90 transition-all duration-300">
+      {/* Name - static on mobile */}
+      <div className="pt-4 md:hidden">
+        <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full transition-all duration-300">
           <span className="text-sm font-medium tracking-tight text-foreground">
             {t.header.title}
           </span>
         </Link>
       </div>
 
-      {/* Nav pills - bottom on mobile, top-right on desktop */}
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:bottom-auto md:left-auto md:translate-x-0 md:top-4 md:right-6 z-50 flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5">
+      {/* Desktop header bar - fixed, max-width aligned */}
+      <div className="hidden md:block fixed top-4 left-0 right-0 z-50">
+        <div className="max-w-[1480px] mx-auto px-6 flex items-center justify-between">
+          <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm hover:bg-white/90 transition-all duration-300">
+            <span className="text-sm font-medium tracking-tight text-foreground">
+              {t.header.title}
+            </span>
+          </Link>
+          <nav className="flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5">
+            {NAV_SECTIONS.map((section) => (
+              <button
+                key={section}
+                onClick={() => handleNav(section)}
+                className={`px-4 py-1.5 text-sm rounded-full transition-all duration-300 ${
+                  isIndex && activeSection === section
+                    ? 'bg-foreground text-background font-medium'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {t.header[section]}
+              </button>
+            ))}
+            <div className="w-px h-5 bg-border/50 mx-1" />
+            <LanguageToggle />
+          </nav>
+        </div>
+      </div>
+
+      {/* Mobile nav pills - bottom fixed */}
+      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:hidden z-50 flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5">
         {NAV_SECTIONS.map((section) => (
           <button
             key={section}
@@ -69,10 +97,6 @@ export const Header = () => {
             {t.header[section]}
           </button>
         ))}
-        <div className="hidden md:block w-px h-5 bg-border/50 mx-1" />
-        <div className="hidden md:block">
-          <LanguageToggle />
-        </div>
       </nav>
 
       {/* Desktop spacer */}
