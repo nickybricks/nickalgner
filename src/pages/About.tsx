@@ -5,7 +5,7 @@ import { PageTransition } from '@/components/PageTransition';
 const About = () => {
   return (
     <PageTransition>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-white">
         <Header />
         <main>
           <AboutSection />
