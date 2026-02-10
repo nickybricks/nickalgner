@@ -28,25 +28,31 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="work" className="pt-20 pb-24 px-4 md:px-6">
+    <section id="work" className="pt-12 md:pt-20 pb-16 md:pb-24 px-4 md:px-6">
       <div className="container">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-16 max-w-2xl">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-10 md:mb-16 max-w-2xl">
           {t.hero.tagline}
         </h1>
 
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 md:scrollbar-hide"
+            style={{ scrollbarWidth: 'auto', msOverflowStyle: 'auto' }}
           >
+            <style>{`
+              @media (min-width: 768px) {
+                .md-scrollbar-hide::-webkit-scrollbar { display: none; }
+                .md-scrollbar-hide { scrollbar-width: none; }
+              }
+            `}</style>
             {projects.map((project) => (
               <article
                 key={project.id}
                 onClick={() => navigate(`/project/${project.slug}`)}
-                className="group cursor-pointer flex-shrink-0 w-[280px] md:w-[320px] rounded-2xl bg-muted p-4 transition-all duration-300 hover:shadow-lg"
+                className="group cursor-pointer flex-shrink-0 w-[200px] md:w-[320px] rounded-2xl bg-muted p-3 md:p-4 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="aspect-[3/4] overflow-hidden rounded-xl mb-4">
+                <div className="aspect-[3/4] overflow-hidden rounded-xl mb-3 md:mb-4">
                   <img
                     src={project.thumbnail}
                     alt={project.name}
@@ -54,16 +60,17 @@ export const HeroSection = () => {
                     loading="lazy"
                   />
                 </div>
-                <h3 className="text-lg font-medium text-foreground">{project.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                <h3 className="text-base md:text-lg font-medium text-foreground">{project.name}</h3>
+                <p className="mt-1 text-xs md:text-sm text-muted-foreground line-clamp-2">
                   {project.description[language]}
                 </p>
               </article>
             ))}
           </div>
 
+          {/* Desktop only: fade + arrow */}
           {canScrollRight && (
-            <div className="absolute right-0 top-0 bottom-4 w-24 flex items-center justify-end pointer-events-none bg-gradient-to-l from-white to-transparent">
+            <div className="hidden md:flex absolute right-0 top-0 bottom-4 w-24 items-center justify-end pointer-events-none bg-gradient-to-l from-white to-transparent">
               <button
                 onClick={scrollRight}
                 className="pointer-events-auto p-2 rounded-full bg-white border border-border text-muted-foreground hover:text-foreground transition-colors mr-2"
