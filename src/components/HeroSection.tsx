@@ -44,14 +44,14 @@ export const HeroSection = () => {
   return (
     <section id="work" className="pt-12 md:pt-20 pb-16 md:pb-24">
       <div>
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-10 md:mb-16 max-w-2xl px-4 md:px-6">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-10 md:mb-16 max-w-2xl">
           {t.hero.tagline}
         </h1>
 
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 px-4 md:px-6 auto-hide-scrollbar"
+            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 auto-hide-scrollbar"
           >
             <style>{`
               .auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color 0.3s; }

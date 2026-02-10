@@ -4,7 +4,7 @@ export const ApproachSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="approach" className="py-24 px-4 md:px-6">
+    <section id="approach" className="py-24">
       <div className="container">
         <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-12">
           {t.approach.title}
