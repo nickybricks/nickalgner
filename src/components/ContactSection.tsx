@@ -6,7 +6,7 @@ export const ContactSection = () => {
 
   return (
     <section id="contact" className="py-24 border-t border-border">
-      <div className="container">
+      <div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
             <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-6">
