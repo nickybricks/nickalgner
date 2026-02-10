@@ -45,15 +45,13 @@ export const Header = () => {
 
   return (
     <>
-      {/* Fixed name - not in header, part of page */}
-      <div className="fixed top-0 left-0 z-40 px-4 md:px-6 h-16 flex items-center">
-        <div className="container">
-          <Link to="/" className="hover:opacity-70 transition-opacity duration-300">
-            <span className="text-sm font-medium tracking-tight text-foreground">
-              {t.header.title}
-            </span>
-          </Link>
-        </div>
+      {/* Fixed name - liquid glass pill */}
+      <div className="fixed top-4 left-4 md:left-6 z-50">
+        <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm hover:bg-white/90 transition-all duration-300">
+          <span className="text-sm font-medium tracking-tight text-foreground">
+            {t.header.title}
+          </span>
+        </Link>
       </div>
 
       {/* Floating pill nav - sticky header */}
