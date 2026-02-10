@@ -1,79 +1,80 @@
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
-import { ChevronDown, ArrowDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ChevronRight } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
+import { projects } from '@/data/projects';
 
 export const HeroSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const navigate = useNavigate();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects');
-    projectsSection?.scrollIntoView({ behavior: 'smooth' });
+  const checkScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 10);
+  };
+
+  useEffect(() => {
+    checkScroll();
+    const el = scrollRef.current;
+    el?.addEventListener('scroll', checkScroll);
+    return () => el?.removeEventListener('scroll', checkScroll);
+  }, []);
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 400, behavior: 'smooth' });
   };
 
   return (
-    <section className="min-h-[85vh] flex flex-col items-center justify-center px-4 relative overflow-hidden">
-
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
-        <div 
-          className="absolute -top-20 -left-20 w-[600px] h-[600px] rounded-full blur-[120px] animate-gradient-shift"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(201, 168, 108, 0.4) 0%, transparent 70%)',
-          }}
-        />
-        <div 
-          className="absolute top-1/4 -right-20 w-[500px] h-[500px] rounded-full blur-[120px] animate-gradient-shift"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(210, 180, 140, 0.35) 0%, transparent 70%)',
-            animationDelay: '-20s',
-          }}
-        />
-        <div 
-          className="absolute -bottom-20 left-1/3 w-[550px] h-[550px] rounded-full blur-[120px] animate-gradient-shift"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(220, 190, 130, 0.3) 0%, transparent 70%)',
-            animationDelay: '-40s',
-          }}
-        />
-      </div>
-
-      {/* Main content with generous whitespace */}
-      <div className="text-center space-y-8 animate-fade-in-up">
-        {/* Name - large and elegant */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-foreground">
-          Nick
-          <br />
-          <span className="font-normal">Algner</span>
+    <section id="work" className="pt-20 pb-24 px-4 md:px-6">
+      <div className="container">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-16 max-w-2xl">
+          {t.hero.tagline}
         </h1>
 
-        {/* Tagline - stronger presence */}
-        <p className="text-xl md:text-2xl text-foreground/70 font-normal max-w-md mx-auto animate-fade-in-delay">
-          {t.hero.tagline}
-        </p>
-
-        {/* CTA Button */}
-        <div className="pt-4 animate-fade-in-delay" style={{ animationDelay: '0.4s' }}>
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={scrollToProjects}
-            className="border-foreground/20 text-foreground/80 hover:bg-foreground/5 hover:border-foreground/30 hover:text-foreground transition-all duration-300 gap-2"
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {t.hero.viewProjects}
-            <ArrowDown className="h-4 w-4" />
-          </Button>
+            {projects.map((project) => (
+              <article
+                key={project.id}
+                onClick={() => navigate(`/project/${project.slug}`)}
+                className="group cursor-pointer flex-shrink-0 w-[350px] md:w-[420px]"
+              >
+                <div className="aspect-video overflow-hidden rounded-2xl mb-4">
+                  <img
+                    src={project.thumbnail}
+                    alt={project.name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 className="text-lg font-medium text-foreground">{project.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                  {project.description[language]}
+                </p>
+              </article>
+            ))}
+          </div>
+
+          {/* Fade + arrow indicator */}
+          {canScrollRight && (
+            <div className="absolute right-0 top-0 bottom-4 w-24 flex items-center justify-end pointer-events-none bg-gradient-to-l from-background to-transparent">
+              <button
+                onClick={scrollRight}
+                className="pointer-events-auto p-2 rounded-full bg-background/80 border border-border text-muted-foreground hover:text-foreground transition-colors mr-2"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* Subtle scroll indicator */}
-      <button
-        onClick={scrollToProjects}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground/30 hover:text-muted-foreground/60 transition-colors duration-500 animate-fade-in-delay"
-        aria-label="Scroll to projects"
-        style={{ animationDelay: '0.6s' }}
-      >
-        <ChevronDown className="h-5 w-5 animate-bounce" style={{ animationDuration: '2.5s' }} />
-      </button>
     </section>
   );
 };
