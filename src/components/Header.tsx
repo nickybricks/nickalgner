@@ -1,18 +1,20 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
 import { useEffect, useState } from 'react';
 
+const NAV_SECTIONS = ['work', 'about', 'contact'] as const;
+
 export const Header = () => {
   const { t } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
   const isIndex = location.pathname === '/';
   const [activeSection, setActiveSection] = useState<string>('work');
 
   useEffect(() => {
     if (!isIndex) return;
 
-    const sections = ['work', 'about', 'contact'];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -24,7 +26,7 @@ export const Header = () => {
       { rootMargin: '-40% 0px -50% 0px', threshold: 0 }
     );
 
-    sections.forEach((id) => {
+    NAV_SECTIONS.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -32,9 +34,13 @@ export const Header = () => {
     return () => observer.disconnect();
   }, [isIndex]);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    el?.scrollIntoView({ behavior: 'smooth' });
+  const handleNav = (section: string) => {
+    if (isIndex) {
+      const el = document.getElementById(section);
+      el?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(`/#${section}`);
+    }
   };
 
   return (
@@ -46,30 +52,19 @@ export const Header = () => {
           </span>
         </Link>
         <div className="flex items-center gap-2">
-          {isIndex ? (
-            <>
-              {['work', 'about', 'contact'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollTo(section)}
-                  className={`px-4 py-1.5 text-sm rounded-full transition-all duration-300 ${
-                    activeSection === section
-                      ? 'bg-foreground text-background font-medium'
-                      : 'text-muted-foreground hover:text-foreground border border-transparent hover:border-border'
-                  }`}
-                >
-                  {t.header[section as 'work' | 'about' | 'contact']}
-                </button>
-              ))}
-            </>
-          ) : (
-            <Link
-              to="/"
-              className="px-4 py-1.5 text-sm text-muted-foreground hover:text-foreground rounded-full border border-transparent hover:border-border transition-all duration-300"
+          {NAV_SECTIONS.map((section) => (
+            <button
+              key={section}
+              onClick={() => handleNav(section)}
+              className={`px-4 py-1.5 text-sm rounded-full transition-all duration-300 ${
+                isIndex && activeSection === section
+                  ? 'bg-foreground text-background font-medium'
+                  : 'text-muted-foreground hover:text-foreground border border-transparent hover:border-border'
+              }`}
             >
-              {t.header.work}
-            </Link>
-          )}
+              {t.header[section]}
+            </button>
+          ))}
           <LanguageToggle />
         </div>
       </div>
