@@ -28,29 +28,34 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="work" className="pt-12 md:pt-20 pb-16 md:pb-24 px-4 md:px-6">
-      <div className="container">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-10 md:mb-16 max-w-2xl">
+    <section id="work" className="pt-12 md:pt-20 pb-16 md:pb-24">
+      <div>
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-10 md:mb-16 max-w-2xl px-4 md:px-6">
           {t.hero.tagline}
         </h1>
 
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 md:scrollbar-hide"
-            style={{ scrollbarWidth: 'auto', msOverflowStyle: 'auto' }}
+            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 px-4 md:px-6 auto-hide-scrollbar"
           >
             <style>{`
+              .auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+              .auto-hide-scrollbar:hover { scrollbar-color: hsl(var(--border)) transparent; }
+              .auto-hide-scrollbar::-webkit-scrollbar { height: 6px; }
+              .auto-hide-scrollbar::-webkit-scrollbar-track { background: transparent; }
+              .auto-hide-scrollbar::-webkit-scrollbar-thumb { background: transparent; border-radius: 3px; }
+              .auto-hide-scrollbar:hover::-webkit-scrollbar-thumb { background: hsl(var(--border)); }
               @media (min-width: 768px) {
-                .md-scrollbar-hide::-webkit-scrollbar { display: none; }
-                .md-scrollbar-hide { scrollbar-width: none; }
+                .auto-hide-scrollbar { scrollbar-width: none; }
+                .auto-hide-scrollbar::-webkit-scrollbar { display: none; }
               }
             `}</style>
             {projects.map((project) => (
               <article
                 key={project.id}
                 onClick={() => navigate(`/project/${project.slug}`)}
-                className="group cursor-pointer flex-shrink-0 w-[200px] md:w-[320px] rounded-2xl bg-muted p-3 md:p-4 transition-all duration-300 hover:shadow-lg"
+                className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl bg-muted p-3 md:p-4 transition-all duration-300 hover:shadow-lg"
               >
                 <div className="aspect-[3/4] overflow-hidden rounded-xl mb-3 md:mb-4">
                   <img
