@@ -44,9 +44,9 @@ export const HeroSection = () => {
               <article
                 key={project.id}
                 onClick={() => navigate(`/project/${project.slug}`)}
-                className="group cursor-pointer flex-shrink-0 w-[350px] md:w-[420px]"
+                className="group cursor-pointer flex-shrink-0 w-[280px] md:w-[320px] rounded-2xl bg-muted p-4 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="aspect-video overflow-hidden rounded-2xl mb-4">
+                <div className="aspect-[3/4] overflow-hidden rounded-xl mb-4">
                   <img
                     src={project.thumbnail}
                     alt={project.name}
@@ -62,12 +62,11 @@ export const HeroSection = () => {
             ))}
           </div>
 
-          {/* Fade + arrow indicator */}
           {canScrollRight && (
-            <div className="absolute right-0 top-0 bottom-4 w-24 flex items-center justify-end pointer-events-none bg-gradient-to-l from-background to-transparent">
+            <div className="absolute right-0 top-0 bottom-4 w-24 flex items-center justify-end pointer-events-none bg-gradient-to-l from-white to-transparent">
               <button
                 onClick={scrollRight}
-                className="pointer-events-auto p-2 rounded-full bg-background/80 border border-border text-muted-foreground hover:text-foreground transition-colors mr-2"
+                className="pointer-events-auto p-2 rounded-full bg-white border border-border text-muted-foreground hover:text-foreground transition-colors mr-2"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
