@@ -27,7 +27,7 @@ const Index = () => {
 
         {/* About Section */}
         <section id="about" className="py-24">
-          <div className="container">
+          <div>
             <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-12">
               {t.about.title}
             </h2>
