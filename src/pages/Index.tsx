@@ -26,7 +26,7 @@ const Index = () => {
         <HeroSection />
 
         {/* About Section */}
-        <section id="about" className="py-24">
+        <section id="about" className="py-24 pt-[76px]">
           <div>
             <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-12">
               {t.about.title}
@@ -37,8 +37,8 @@ const Index = () => {
                   src={profileImage}
                   alt="Nick Algner"
                   className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                  loading="lazy" />
+
               </div>
               <div className="lg:col-span-2 space-y-4">
                 <p className="text-lg font-medium text-foreground">{t.about.intro}</p>
@@ -50,14 +50,14 @@ const Index = () => {
                     {t.about.capabilities}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {t.about.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-4 py-1.5 text-sm border border-border text-muted-foreground rounded-full"
-                      >
+                    {t.about.skills.map((skill) =>
+                    <span
+                      key={skill}
+                      className="px-4 py-1.5 text-sm border border-border text-muted-foreground rounded-full">
+
                         {skill}
                       </span>
-                    ))}
+                    )}
                   </div>
                 </div>
               </div>
@@ -68,8 +68,8 @@ const Index = () => {
         <ApproachSection />
         <ContactSection />
       </div>
-    </PageTransition>
-  );
+    </PageTransition>);
+
 };
 
 export default Index;
