@@ -69,7 +69,7 @@ export const HeroSection = () => {
             <article
               key={project.id}
               onClick={() => navigate(`/project/${project.slug}`)}
-              className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl bg-muted p-3 md:p-4 transition-all duration-300 hover:shadow-lg">
+              className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl p-3 md:p-4 transition-all duration-300 hover:shadow-lg bg-[#f6f5f4]">
 
                 <div className="aspect-[3/4] overflow-hidden rounded-xl mb-3 md:mb-4">
                   <img
