@@ -62,20 +62,20 @@ export const Header = () => {
               {t.header.title}
             </span>
           </Link>
-          <nav className="flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5">
-            {NAV_SECTIONS.map((section) => (
-              <button
-                key={section}
-                onClick={() => handleNav(section)}
-                className={`px-4 py-1.5 text-sm rounded-full transition-all duration-300 ${
-                  isIndex && activeSection === section
-                    ? 'bg-foreground text-background font-medium'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
+          <nav className="flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5 whitespace-nowrap">
+            {NAV_SECTIONS.map((section) =>
+            <button
+              key={section}
+              onClick={() => handleNav(section)}
+              className={`px-4 py-1.5 text-sm rounded-full transition-all duration-300 ${
+              isIndex && activeSection === section ?
+              'bg-foreground text-background font-medium' :
+              'text-muted-foreground hover:text-foreground'}`
+              }>
+
                 {t.header[section]}
               </button>
-            ))}
+            )}
             <div className="w-px h-5 bg-border/50 mx-1" />
             <LanguageToggle />
           </nav>
@@ -83,24 +83,24 @@ export const Header = () => {
       </div>
 
       {/* Mobile nav pills - bottom fixed */}
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:hidden z-50 flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5">
-        {NAV_SECTIONS.map((section) => (
-          <button
-            key={section}
-            onClick={() => handleNav(section)}
-            className={`px-4 py-1.5 text-sm rounded-full transition-all duration-300 ${
-              isIndex && activeSection === section
-                ? 'bg-foreground text-background font-medium'
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-          >
+      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:hidden z-50 flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5 whitespace-nowrap">
+        {NAV_SECTIONS.map((section) =>
+        <button
+          key={section}
+          onClick={() => handleNav(section)}
+          className={`px-4 py-1.5 text-sm rounded-full transition-all duration-300 ${
+          isIndex && activeSection === section ?
+          'bg-foreground text-background font-medium' :
+          'text-muted-foreground hover:text-foreground'}`
+          }>
+
             {t.header[section]}
           </button>
-        ))}
+        )}
       </nav>
 
       {/* Desktop spacer */}
       <div className="hidden md:block h-16" />
-    </>
-  );
+    </>);
+
 };
