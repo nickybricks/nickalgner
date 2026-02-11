@@ -51,8 +51,8 @@ export const HeroSection = () => {
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 auto-hide-scrollbar"
-          >
+            className="flex gap-4 md:gap-6 overflow-x-auto pb-4 auto-hide-scrollbar">
+
             <style>{`
               .auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color 0.3s; }
               .auto-hide-scrollbar:active, .auto-hide-scrollbar.scrolling { scrollbar-color: hsl(var(--border)) transparent; }
@@ -65,41 +65,41 @@ export const HeroSection = () => {
                 .auto-hide-scrollbar::-webkit-scrollbar { display: none; }
               }
             `}</style>
-            {projects.map((project) => (
-              <article
-                key={project.id}
-                onClick={() => navigate(`/project/${project.slug}`)}
-                className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl bg-muted p-3 md:p-4 transition-all duration-300 hover:shadow-lg"
-              >
+            {projects.map((project) =>
+            <article
+              key={project.id}
+              onClick={() => navigate(`/project/${project.slug}`)}
+              className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl p-3 md:p-4 transition-all duration-300 hover:shadow-lg bg-[#f6f5f4]">
+
                 <div className="aspect-[3/4] overflow-hidden rounded-xl mb-3 md:mb-4">
                   <img
-                    src={project.thumbnail}
-                    alt={project.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
+                  src={project.thumbnail}
+                  alt={project.name}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy" />
+
                 </div>
                 <h3 className="text-base md:text-lg font-medium text-foreground">{project.name}</h3>
                 <p className="mt-1 text-xs md:text-sm text-muted-foreground line-clamp-2">
                   {project.description[language]}
                 </p>
               </article>
-            ))}
+            )}
           </div>
 
           {/* Desktop only: fade + arrow */}
-          {canScrollRight && (
-            <div className="hidden md:flex absolute right-0 top-0 bottom-4 w-24 items-center justify-end pointer-events-none bg-gradient-to-l from-white to-transparent">
+          {canScrollRight &&
+          <div className="hidden md:flex absolute right-0 top-0 bottom-4 w-24 items-center justify-end pointer-events-none bg-gradient-to-l from-white to-transparent">
               <button
-                onClick={scrollRight}
-                className="pointer-events-auto p-2 rounded-full bg-white border border-border text-muted-foreground hover:text-foreground transition-colors mr-2"
-              >
+              onClick={scrollRight}
+              className="pointer-events-auto p-2 rounded-full bg-white border border-border text-muted-foreground hover:text-foreground transition-colors mr-2">
+
                 <ChevronRight className="h-5 w-5" />
               </button>
             </div>
-          )}
+          }
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
