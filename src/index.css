@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,7 +28,7 @@
     --popover-foreground: 0 0% 10%;
 
     /* Muted Gold/Terracotta Accent - #C9A86C */
-    --primary: 38 45% 60%;
+    --primary: 0 0% 10%;
     --primary-foreground: 0 0% 100%;
 
     /* Light Beige Secondary - #F5F3EF */
