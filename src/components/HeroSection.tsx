@@ -51,7 +51,7 @@ export const HeroSection = () => {
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto auto-hide-scrollbar -mx-4 px-4 pb-[26px]">
+            className="flex gap-4 md:gap-6 overflow-x-auto auto-hide-scrollbar -mx-6 px-6 pb-[26px]\n">
 
             <style>{`
               .auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color 0.3s; }

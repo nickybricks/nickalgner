@@ -23,7 +23,7 @@ const Index = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen px-6 md:px-8 mx-auto max-w-[1260px]">
+      <div className="min-h-screen px-6 md:px-8 mx-auto max-w-[1260px] pl-[16px] pr-[16px]">
         <Header />
         <HeroSection />
 
@@ -35,10 +35,10 @@ const Index = () => {
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
               <div className={`aspect-square overflow-hidden rounded-2xl ${
-                theme === 'dark'
-                  ? 'p-2 bg-[rgba(255,255,255,0.05)] backdrop-blur-xl border border-[rgba(255,255,255,0.1)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]'
-                  : ''
-              }`}>
+              theme === 'dark' ?
+              'p-2 bg-[rgba(255,255,255,0.05)] backdrop-blur-xl border border-[rgba(255,255,255,0.1)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]' :
+              ''}`
+              }>
                 <img
                   src={profileImage}
                   alt="Nick Algner"
