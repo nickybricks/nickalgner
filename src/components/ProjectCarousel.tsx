@@ -1,16 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Autoplay from 'embla-carousel-autoplay';
-import { Project } from '@/data/projects';
-import { useLanguage } from '@/context/LanguageContext';
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from '@/components/ui/carousel';
-import { cn } from '@/lib/utils';
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import Autoplay from "embla-carousel-autoplay";
+import { Project } from "@/data/projects";
+import { useLanguage } from "@/context/LanguageContext";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 interface ProjectCarouselProps {
   projects: Project[];
@@ -38,15 +33,15 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
       setIsDragging(false);
     };
 
-    api.on('select', onSelect);
-    api.on('pointerDown', onPointerDown);
-    api.on('pointerUp', onPointerUp);
+    api.on("select", onSelect);
+    api.on("pointerDown", onPointerDown);
+    api.on("pointerUp", onPointerUp);
     onSelect();
 
     return () => {
-      api.off('select', onSelect);
-      api.off('pointerDown', onPointerDown);
-      api.off('pointerUp', onPointerUp);
+      api.off("select", onSelect);
+      api.off("pointerDown", onPointerDown);
+      api.off("pointerUp", onPointerUp);
     };
   }, [api]);
 
@@ -54,7 +49,7 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
     (index: number) => {
       api?.scrollTo(index);
     },
-    [api]
+    [api],
   );
 
   const scrollPrev = useCallback(() => {
@@ -76,10 +71,10 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
       <Carousel
         setApi={setApi}
         opts={{
-          align: 'start',
+          align: "start",
           loop: true,
           dragFree: false,
-          containScroll: 'trimSnaps',
+          containScroll: "trimSnaps",
           skipSnaps: false,
           duration: 25,
         }}
@@ -92,17 +87,17 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
         ]}
         className="w-full touch-pan-y"
       >
-        <CarouselContent className="-ml-0 pb-8">
+        <CarouselContent className="-ml-0 pb-8 pt-4">
           {projects.map((project) => (
             <CarouselItem key={project.id} className="pl-0">
               <article
                 onClick={() => handleProjectClick(project.slug)}
                 className={cn(
-                  'group cursor-pointer overflow-hidden rounded-2xl bg-card shadow-lg transition-all duration-300 hover:shadow-xl mx-4',
-                  isDragging ? 'scale-[0.98]' : 'active:scale-[0.98]'
+                  "group cursor-pointer rounded-2xl bg-card shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 mx-4",
+                  isDragging ? "scale-[0.98]" : "active:scale-[0.98]",
                 )}
               >
-                <div className="aspect-video overflow-hidden select-none pointer-events-none">
+                <div className="aspect-video overflow-hidden rounded-t-2xl select-none pointer-events-none">
                   <img
                     src={project.thumbnail}
                     alt={project.name}
@@ -112,12 +107,8 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                   />
                 </div>
                 <div className="p-5 select-none">
-                  <h2 className="text-xl font-semibold text-card-foreground">
-                    {project.name}
-                  </h2>
-                  <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-                    {project.description[language]}
-                  </p>
+                  <h2 className="text-xl font-semibold text-card-foreground">{project.name}</h2>
+                  <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{project.description[language]}</p>
                   <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary transition-colors group-hover:text-primary/80">
                     {t.projects.viewProject}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -153,19 +144,17 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
               key={index}
               onClick={() => scrollTo(index)}
               className={cn(
-                'h-2 rounded-full transition-all duration-300',
-                current === index
-                  ? 'w-6 bg-primary'
-                  : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                "h-2 rounded-full transition-all duration-300",
+                current === index ? "w-6 bg-primary" : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50",
               )}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
-        
+
         {/* Swipe hint - only on mobile */}
         <p className="text-xs text-muted-foreground md:hidden animate-pulse">
-          ← {language === 'de' ? 'Wischen zum Navigieren' : 'Swipe to navigate'} →
+          ← {language === "de" ? "Wischen zum Navigieren" : "Swipe to navigate"} →
         </p>
       </div>
     </div>
