@@ -56,7 +56,7 @@ export const Header = () => {
 
       {/* Desktop header bar - fixed, max-width aligned */}
       <div className="hidden md:block fixed top-4 left-0 right-0 z-50">
-        <div className="max-w-[1480px] mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-[1260px] mx-auto px-8 flex items-center justify-between">
           <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm hover:bg-white/90 transition-all duration-300">
             <span className="text-sm font-medium tracking-tight text-foreground">
               {t.header.title}
