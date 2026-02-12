@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageToggle } from './LanguageToggle';
+import { ThemeToggle } from './ThemeToggle';
 import { useEffect, useState } from 'react';
 
 const NAV_SECTIONS = ['work', 'about', 'contact'] as const;
@@ -57,12 +58,12 @@ export const Header = () => {
       {/* Desktop header bar - fixed, max-width aligned */}
       <div className="hidden md:block fixed top-4 left-0 right-0 z-50">
         <div className="max-w-[1260px] mx-auto px-8 flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm hover:bg-white/90 transition-all duration-300">
+          <Link to="/" className="inline-flex items-center px-4 py-1.5 rounded-full bg-background/70 backdrop-blur-xl border border-border shadow-sm hover:bg-background/90 transition-all duration-300">
             <span className="text-sm font-medium tracking-tight text-foreground">
               {t.header.title}
             </span>
           </Link>
-          <nav className="flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5 whitespace-nowrap">
+          <nav className="flex items-center gap-1 rounded-full bg-background/70 backdrop-blur-xl border border-border shadow-sm px-1.5 py-1.5 whitespace-nowrap">
             {NAV_SECTIONS.map((section) =>
             <button
               key={section}
@@ -76,14 +77,15 @@ export const Header = () => {
                 {t.header[section]}
               </button>
             )}
-            <div className="w-px h-5 bg-border/50 mx-1" />
+            <div className="w-px h-5 bg-border mx-1" />
+            <ThemeToggle />
             <LanguageToggle />
           </nav>
         </div>
       </div>
 
       {/* Mobile nav pills - bottom fixed */}
-      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:hidden z-50 flex items-center gap-1 rounded-full bg-white/70 backdrop-blur-xl border border-border/50 shadow-sm px-1.5 py-1.5 whitespace-nowrap">
+      <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 md:hidden z-50 flex items-center gap-1 rounded-full bg-background/70 backdrop-blur-xl border border-border shadow-sm px-1.5 py-1.5 whitespace-nowrap">
         {NAV_SECTIONS.map((section) =>
         <button
           key={section}
@@ -97,6 +99,7 @@ export const Header = () => {
             {t.header[section]}
           </button>
         )}
+        <ThemeToggle />
       </nav>
 
       {/* Desktop spacer */}

@@ -5,11 +5,13 @@ import { HeroSection } from '@/components/HeroSection';
 import { ApproachSection } from '@/components/ApproachSection';
 import { ContactSection } from '@/components/ContactSection';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 import { PageTransition } from '@/components/PageTransition';
 import profileImage from '@/assets/profile-nick.png';
 
 const Index = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
   const location = useLocation();
 
   useEffect(() => {
@@ -32,13 +34,16 @@ const Index = () => {
               {t.about.title}
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-              <div className="aspect-square overflow-hidden rounded-2xl">
+              <div className={`aspect-square overflow-hidden rounded-2xl ${
+                theme === 'dark'
+                  ? 'p-2 bg-[rgba(255,255,255,0.05)] backdrop-blur-xl border border-[rgba(255,255,255,0.1)] shadow-[0_8px_32px_rgba(0,0,0,0.3)]'
+                  : ''
+              }`}>
                 <img
                   src={profileImage}
                   alt="Nick Algner"
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover ${theme === 'dark' ? 'rounded-xl' : ''}`}
                   loading="lazy" />
-
               </div>
               <div className="lg:col-span-2 space-y-4">
                 <p className="text-lg font-medium text-foreground">{t.about.intro}</p>
