@@ -51,8 +51,8 @@ export const HeroSection = () => {
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto auto-hide-scrollbar -mx-6 px-6 pb-[26px]\\\\\\\\n pb-[10px] pt-[10px]"
-          >
+            className="flex gap-4 md:gap-6 overflow-x-auto auto-hide-scrollbar -mx-6 px-6 pb-[26px]\\\\\\\\\\\\\\\\n pb-[16px] pt-[16px]">
+
             <style>{`
               .auto-hide-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color 0.3s; }
               .auto-hide-scrollbar:active, .auto-hide-scrollbar.scrolling { scrollbar-color: hsl(var(--border)) transparent; }
@@ -65,41 +65,41 @@ export const HeroSection = () => {
                 .auto-hide-scrollbar::-webkit-scrollbar { display: none; }
               }
             `}</style>
-            {projects.map((project) => (
-              <article
-                key={project.id}
-                onClick={() => navigate(`/project/${project.slug}`)}
-                className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl p-3 md:p-4 transition-all duration-300 ease-out hover:scale-[1.005] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:z-10 bg-muted dark:bg-[rgba(255,255,255,0.05)] dark:border dark:border-[rgba(255,255,255,0.1)]"
-              >
+            {projects.map((project) =>
+            <article
+              key={project.id}
+              onClick={() => navigate(`/project/${project.slug}`)}
+              className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl p-3 md:p-4 transition-all duration-300 ease-out hover:scale-[1.005] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:z-10 bg-muted dark:bg-[rgba(255,255,255,0.05)] dark:border dark:border-[rgba(255,255,255,0.1)]">
+
                 <div className="aspect-[3/4] overflow-hidden rounded-xl mb-3 md:mb-4">
                   <img
-                    src={project.thumbnail}
-                    alt={project.name}
-                    className="h-full w-full object-cover transition-transform duration-500"
-                    loading="lazy"
-                  />
+                  src={project.thumbnail}
+                  alt={project.name}
+                  className="h-full w-full object-cover transition-transform duration-500"
+                  loading="lazy" />
+
                 </div>
                 <h3 className="text-base md:text-lg font-medium text-foreground">{project.name}</h3>
                 <p className="mt-1 text-xs md:text-sm text-muted-foreground line-clamp-2">
                   {project.description[language]}
                 </p>
               </article>
-            ))}
+            )}
           </div>
 
           {/* Desktop only: fade + arrow */}
-          {canScrollRight && (
-            <div className="hidden md:flex absolute right-0 top-0 bottom-4 w-24 items-center justify-end pointer-events-none bg-gradient-to-l from-background to-transparent">
+          {canScrollRight &&
+          <div className="hidden md:flex absolute right-0 top-0 bottom-4 w-24 items-center justify-end pointer-events-none bg-gradient-to-l from-background to-transparent">
               <button
-                onClick={scrollRight}
-                className="pointer-events-auto p-2 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground transition-colors mr-2"
-              >
+              onClick={scrollRight}
+              className="pointer-events-auto p-2 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground transition-colors mr-2">
+
                 <ChevronRight className="h-5 w-5" />
               </button>
             </div>
-          )}
+          }
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
