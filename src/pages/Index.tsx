@@ -21,7 +21,7 @@ const Index = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen px-5 md:px-6 mx-auto max-w-[1480px]">
+      <div className="min-h-screen px-6 md:px-8 mx-auto max-w-[1260px]">
         <Header />
         <HeroSection />
 
