@@ -69,7 +69,7 @@ export const HeroSection = () => {
             <article
               key={project.id}
               onClick={() => navigate(`/project/${project.slug}`)}
-              className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl p-3 md:p-4 transition-all duration-300 hover:shadow-lg bg-[#f6f5f4]">
+              className="group cursor-pointer flex-shrink-0 w-[240px] md:w-[320px] rounded-2xl p-3 md:p-4 transition-all duration-300 hover:shadow-lg bg-muted dark:bg-[rgba(255,255,255,0.05)] dark:border dark:border-[rgba(255,255,255,0.1)]">
 
                 <div className="aspect-[3/4] overflow-hidden rounded-xl mb-3 md:mb-4">
                   <img
@@ -89,10 +89,10 @@ export const HeroSection = () => {
 
           {/* Desktop only: fade + arrow */}
           {canScrollRight &&
-          <div className="hidden md:flex absolute right-0 top-0 bottom-4 w-24 items-center justify-end pointer-events-none bg-gradient-to-l from-white to-transparent">
+          <div className="hidden md:flex absolute right-0 top-0 bottom-4 w-24 items-center justify-end pointer-events-none bg-gradient-to-l from-background to-transparent">
               <button
               onClick={scrollRight}
-              className="pointer-events-auto p-2 rounded-full bg-white border border-border text-muted-foreground hover:text-foreground transition-colors mr-2">
+              className="pointer-events-auto p-2 rounded-full bg-background border border-border text-muted-foreground hover:text-foreground transition-colors mr-2">
 
                 <ChevronRight className="h-5 w-5" />
               </button>

@@ -56,7 +56,7 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <PageTransition>
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-background">
           <Header />
           <div className="container flex flex-col items-center justify-center px-4 py-20">
             <h1 className="text-2xl font-light text-foreground">Project not found</h1>
@@ -72,7 +72,7 @@ const ProjectDetail = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <Header />
         <main className="container px-4 py-8 md:py-12 md:px-6">
           {/* Back Button - minimal */}
