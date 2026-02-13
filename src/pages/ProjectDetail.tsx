@@ -4,7 +4,8 @@ import { getProjectBySlug } from '@/data/projects';
 import { useLanguage } from '@/context/LanguageContext';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, X } from 'lucide-react';
+import { useTheme } from '@/context/ThemeContext';
 import {
   Carousel,
   CarouselContent,
@@ -19,6 +20,7 @@ const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
+  const { theme } = useTheme();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -75,10 +77,20 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-background">
         <Header />
         <main className="container px-4 py-8 md:py-12 md:px-6">
-          {/* Back Button - minimal */}
+          {/* Mobile: X close button - fixed top right */}
           <button
             onClick={() => navigate('/')}
-            className="mb-8 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+            className={`fixed top-4 right-4 z-50 md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full backdrop-blur-sm shadow-sm transition-colors duration-300 ${
+              theme === 'dark' ? 'bg-background/60' : 'bg-background/80'
+            }`}
+          >
+            <X className="h-6 w-6 text-foreground" />
+          </button>
+
+          {/* Desktop: Back button - sticky top left */}
+          <button
+            onClick={() => navigate('/')}
+            className="hidden md:flex items-center gap-2 mb-8 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.projectDetail.back}
