@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProjectBySlug } from '@/data/projects';
 import { useLanguage } from '@/context/LanguageContext';
@@ -6,14 +5,7 @@ import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ExternalLink, X } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from '@/components/ui/carousel';
-import { cn } from '@/lib/utils';
-import { ImageLightbox } from '@/components/ImageLightbox';
+import { Badge } from '@/components/ui/badge';
 import { PageTransition } from '@/components/PageTransition';
 
 const ProjectDetail = () => {
@@ -21,39 +13,8 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const { language, t } = useLanguage();
   const { theme } = useTheme();
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const project = getProjectBySlug(slug || '');
-
-  useEffect(() => {
-    if (!api) return;
-
-    const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
-    };
-
-    api.on('select', onSelect);
-    onSelect();
-
-    return () => {
-      api.off('select', onSelect);
-    };
-  }, [api]);
-
-  const scrollTo = useCallback(
-    (index: number) => {
-      api?.scrollTo(index);
-    },
-    [api]
-  );
-
-  const openLightbox = (index: number) => {
-    setLightboxIndex(index);
-    setLightboxOpen(true);
-  };
 
   if (!project) {
     return (
@@ -72,12 +33,16 @@ const ProjectDetail = () => {
     );
   }
 
+  const screenshotImages = project.images.slice(1);
+  const toolsRow1 = project.tools.filter((_, i) => i % 2 === 0);
+  const toolsRow2 = project.tools.filter((_, i) => i % 2 !== 0);
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-background">
         <Header />
         <main className="container px-4 py-8 md:py-12 md:px-6">
-          {/* Mobile: X close button - fixed top right */}
+          {/* Mobile: X close button */}
           <button
             onClick={() => navigate('/')}
             className={`fixed top-4 right-4 z-50 md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full backdrop-blur-sm shadow-sm transition-colors duration-300 ${
@@ -87,7 +52,7 @@ const ProjectDetail = () => {
             <X className="h-6 w-6 text-foreground" />
           </button>
 
-          {/* Desktop: Back button - sticky top left */}
+          {/* Desktop: Back button */}
           <button
             onClick={() => navigate('/')}
             className="hidden md:flex items-center gap-2 mb-8 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
@@ -96,62 +61,25 @@ const ProjectDetail = () => {
             {t.projectDetail.back}
           </button>
 
-          {/* Mobile: Image Carousel */}
-          <div className="lg:hidden">
-            <Carousel
-              setApi={setApi}
-              opts={{
-                align: 'start',
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-0">
-                {project.images.map((image, index) => (
-                  <CarouselItem key={index} className="pl-0">
-                    <div 
-                      className="overflow-hidden rounded-2xl bg-muted aspect-video flex items-center justify-center cursor-zoom-in"
-                      onClick={() => openLightbox(index)}
-                    >
-                      <img
-                        src={image}
-                        alt={`${project.name} - Image ${index + 1}`}
-                        className="max-h-full max-w-full object-contain"
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        draggable={false}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-
-            {/* Bullet Navigation - smaller and subtle */}
-            <div className="flex justify-center gap-2 mt-6">
-              {project.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollTo(index)}
-                  className={cn(
-                    'h-1.5 rounded-full transition-all duration-500',
-                    current === index
-                      ? 'w-6 bg-primary'
-                      : 'w-1.5 bg-muted-foreground/20 hover:bg-muted-foreground/40'
-                  )}
-                  aria-label={`Go to image ${index + 1}`}
-                />
-              ))}
+          {/* Hero Section */}
+          <div className="grid gap-8 md:grid-cols-2 md:gap-16">
+            {/* Hero Image */}
+            <div className="overflow-hidden rounded-2xl bg-muted">
+              <img
+                src={project.thumbnail}
+                alt={project.name}
+                className="h-auto w-full object-cover"
+              />
             </div>
 
-            {/* Mobile Content */}
-            <div className="mt-10 space-y-6">
-              <h1 className="text-2xl md:text-3xl font-semibold text-foreground">
+            {/* Hero Text */}
+            <div className="flex flex-col justify-center space-y-6">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground">
                 {project.name}
               </h1>
-              <p className="text-base leading-relaxed text-muted-foreground">
+              <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
                 {project.description[language]}
               </p>
-
               <a
                 href={project.url}
                 target="_blank"
@@ -163,112 +91,107 @@ const ProjectDetail = () => {
                   <ExternalLink className="h-4 w-4" />
                 </Button>
               </a>
-
-              {/* Challenges as numbered list */}
-              <section className="pt-6 pb-12">
-                <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6">
-                  {t.projectDetail.challenges}
-                </h2>
-                <ol className="space-y-4">
-                  {project.challenges[language].map((challenge, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-4 text-muted-foreground"
-                    >
-                      <span className="text-sm font-medium text-primary/60 mt-0.5">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span className="text-sm leading-relaxed">{challenge}</span>
-                    </li>
-                  ))}
-                </ol>
-              </section>
             </div>
           </div>
 
-          {/* Desktop: Two Column Layout with more whitespace */}
-          <div className="hidden lg:block">
-            <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
-              {/* Left Column - Images with more spacing */}
-              <div className="space-y-8">
-                {project.images.slice(0, 4).map((image, index) => (
-                  <div
-                    key={index}
-                    className="overflow-hidden rounded-2xl cursor-zoom-in hover:opacity-95 transition-opacity duration-300"
-                    onClick={() => openLightbox(index)}
+          {/* Content Sections */}
+          <div className="mt-16 md:mt-24 space-y-16 md:space-y-20">
+            {/* Challenges */}
+            <section>
+              <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6 md:mb-8">
+                {t.projectDetail.challenges}
+              </h2>
+              <ol className="space-y-4 md:space-y-5">
+                {project.challenges[language].map((challenge, index) => (
+                  <li key={index} className="flex items-start gap-4 md:gap-5 text-muted-foreground">
+                    <span className="text-sm font-medium text-primary/60 mt-0.5">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-sm md:text-base leading-relaxed">{challenge}</span>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            {/* Problem Solved */}
+            <section>
+              <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6 md:mb-8">
+                {t.projectDetail.problemSolved}
+              </h2>
+              <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
+                {project.problemSolved[language]}
+              </p>
+            </section>
+
+            {/* Architecture */}
+            <section>
+              <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6 md:mb-8">
+                {t.projectDetail.architecture}
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {project.architectureTags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-sm font-normal border-none"
                   >
-                    <img
-                      src={image}
-                      alt={`${project.name} - Image ${index + 1}`}
-                      className="h-auto w-full object-cover"
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                    />
-                  </div>
+                    {tag}
+                  </Badge>
                 ))}
               </div>
+            </section>
 
-              {/* Right Column - Content with generous spacing */}
-              <div className="lg:sticky lg:top-24 lg:self-start space-y-8">
-                <div className="space-y-6">
-                  <h1 className="text-4xl lg:text-5xl font-semibold text-foreground">
-                    {project.name}
-                  </h1>
-                  <p className="text-lg leading-relaxed text-muted-foreground">
-                    {project.description[language]}
-                  </p>
-
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex"
-                  >
-                    <Button variant="outline" className="gap-2 rounded-full">
-                      {t.projectDetail.visitWebsite}
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                  </a>
-                </div>
-
-                {/* Challenges as numbered list - japanese style */}
-                <section className="pt-8">
-                   <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-8">
-                     {t.projectDetail.challenges}
-                   </h2>
-                  <ol className="space-y-5">
-                    {project.challenges[language].map((challenge, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-5 text-muted-foreground"
+            {/* Tools */}
+            <section>
+              <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6 md:mb-8">
+                {t.projectDetail.tools}
+              </h2>
+              <div className="space-y-3">
+                {/* Row 1 */}
+                <div className="-mx-4 md:mx-0 px-4 md:px-0 overflow-x-auto md:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  <div className="flex gap-2 md:flex-wrap w-max md:w-auto">
+                    {toolsRow1.map((tool) => (
+                      <div
+                        key={tool.name}
+                        className="flex items-center gap-2 bg-muted rounded-full px-4 py-2 text-sm text-muted-foreground whitespace-nowrap"
                       >
-                        <span className="text-sm font-medium text-primary/60 mt-0.5">
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        <span className="leading-relaxed">{challenge}</span>
-                      </li>
+                        <span>{tool.name}</span>
+                      </div>
                     ))}
-                  </ol>
-                </section>
+                  </div>
+                </div>
+                {/* Row 2 - offset */}
+                <div className="-mx-4 md:mx-0 px-4 md:px-0 overflow-x-auto md:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                  <div className="flex gap-2 md:flex-wrap w-max md:w-auto pl-6 md:pl-6">
+                    {toolsRow2.map((tool) => (
+                      <div
+                        key={tool.name}
+                        className="flex items-center gap-2 bg-muted rounded-full px-4 py-2 text-sm text-muted-foreground whitespace-nowrap"
+                      >
+                        <span>{tool.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            </section>
 
-            {/* Full Width Gallery - Remaining Images */}
-            {project.images.length > 4 && (
-              <section className="mt-20 pb-16">
-                 <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-8">
-                   {t.projectDetail.gallery}
-                 </h2>
-                <div className="grid gap-8 md:grid-cols-2">
-                  {project.images.slice(4).map((image, index) => (
+            {/* Screenshots */}
+            {screenshotImages.length > 0 && (
+              <section className="pb-16">
+                <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6 md:mb-8">
+                  {t.projectDetail.screenshots}
+                </h2>
+                <div className="flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-6">
+                  {screenshotImages.map((image, index) => (
                     <div
                       key={index}
-                      className="overflow-hidden rounded-2xl bg-muted aspect-video flex items-center justify-center cursor-zoom-in hover:opacity-95 transition-opacity duration-300"
-                      onClick={() => openLightbox(index + 4)}
+                      className="overflow-hidden rounded-2xl bg-muted"
                     >
                       <img
                         src={image}
-                        alt={`${project.name} - Image ${index + 5}`}
-                        className="max-h-full max-w-full object-contain"
+                        alt={`${project.name} - Screenshot ${index + 1}`}
+                        className="h-auto w-full object-cover"
                         loading="lazy"
                       />
                     </div>
@@ -278,15 +201,6 @@ const ProjectDetail = () => {
             )}
           </div>
         </main>
-
-        {/* Lightbox */}
-        <ImageLightbox
-          images={project.images}
-          initialIndex={lightboxIndex}
-          open={lightboxOpen}
-          onOpenChange={setLightboxOpen}
-          projectName={project.name}
-        />
       </div>
     </PageTransition>
   );

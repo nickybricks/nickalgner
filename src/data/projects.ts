@@ -29,6 +29,11 @@ import aivaTools from '@/assets/aiva-tools.png';
 import aivaAnalytics from '@/assets/aiva-analytics.png';
 import aivaCode from '@/assets/aiva-code.png';
 
+export interface ProjectTool {
+  name: string;
+  icon: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -44,6 +49,12 @@ export interface Project {
     de: string[];
     en: string[];
   };
+  problemSolved: {
+    de: string;
+    en: string;
+  };
+  architectureTags: string[];
+  tools: ProjectTool[];
 }
 
 export const projects: Project[] = [
@@ -72,6 +83,19 @@ export const projects: Project[] = [
         'Designing an intuitive event creation flow in just a few steps',
       ],
     },
+    problemSolved: {
+      de: 'Sportvereine und Gruppen hatten keine einfache Möglichkeit, Events zu organisieren, Teilnehmer zu verwalten und Wichtel-Auslosungen durchzuführen – alles landete in chaotischen WhatsApp-Gruppen.',
+      en: 'Sports clubs and groups had no simple way to organize events, manage participants, and run Secret Santa draws – everything ended up in chaotic WhatsApp groups.',
+    },
+    architectureTags: ['React', 'Supabase', 'Edge Functions', 'Real-time DB', 'Google Auth'],
+    tools: [
+      { name: 'React', icon: 'SiReact' },
+      { name: 'TypeScript', icon: 'SiTypescript' },
+      { name: 'Supabase', icon: 'SiSupabase' },
+      { name: 'Tailwind CSS', icon: 'SiTailwindcss' },
+      { name: 'Vite', icon: 'SiVite' },
+      { name: 'Figma', icon: 'SiFigma' },
+    ],
   },
   {
     id: '2',
@@ -98,6 +122,19 @@ export const projects: Project[] = [
         'Building a screener for over 7000 stocks with extensive filter options',
       ],
     },
+    problemSolved: {
+      de: 'Privatanleger hatten keinen einfachen Zugang zu professioneller Aktienanalyse nach bewährten Value-Investing-Prinzipien – bestehende Tools waren zu komplex oder zu teuer.',
+      en: 'Retail investors had no easy access to professional stock analysis based on proven value investing principles – existing tools were too complex or too expensive.',
+    },
+    architectureTags: ['React', 'Supabase', 'REST API', 'AI Analysis', 'Financial Data Pipeline'],
+    tools: [
+      { name: 'React', icon: 'SiReact' },
+      { name: 'TypeScript', icon: 'SiTypescript' },
+      { name: 'Supabase', icon: 'SiSupabase' },
+      { name: 'Tailwind CSS', icon: 'SiTailwindcss' },
+      { name: 'OpenAI', icon: 'SiOpenai' },
+      { name: 'Recharts', icon: 'SiReact' },
+    ],
   },
   {
     id: '4',
@@ -126,6 +163,19 @@ export const projects: Project[] = [
         'Training the AI agent with product-specific knowledge',
       ],
     },
+    problemSolved: {
+      de: 'Der Kundensupport von VENICEBEAUTY war überlastet mit wiederkehrenden Anfragen zu Bestellstatus, Stornierungen und Produktinformationen – ein KI-Chatbot automatisiert nun über 70% dieser Anfragen.',
+      en: 'VENICEBEAUTY\'s customer support was overwhelmed with recurring inquiries about order status, cancellations, and product information – an AI chatbot now automates over 70% of these requests.',
+    },
+    architectureTags: ['Node.js', 'WooCommerce API', 'OpenAI', 'Gorgias', 'Stripe', 'PayPal', 'Webhooks'],
+    tools: [
+      { name: 'Node.js', icon: 'SiNodedotjs' },
+      { name: 'TypeScript', icon: 'SiTypescript' },
+      { name: 'OpenAI', icon: 'SiOpenai' },
+      { name: 'WooCommerce', icon: 'SiWoo' },
+      { name: 'Stripe', icon: 'SiStripe' },
+      { name: 'Gorgias', icon: 'SiGooglechat' },
+    ],
   },
 ];
 
