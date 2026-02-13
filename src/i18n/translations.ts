@@ -21,7 +21,10 @@ export const translations = {
       back: 'Zurück',
       visitWebsite: 'Website besuchen',
       challenges: 'Herausforderungen',
-      gallery: 'Galerie',
+      problemSolved: 'Problem Solved',
+      architecture: 'Architecture',
+      tools: 'Tools',
+      screenshots: 'Screenshots',
     },
     about: {
       title: 'Über mich',
@@ -72,7 +75,10 @@ export const translations = {
       back: 'Back',
       visitWebsite: 'Visit Website',
       challenges: 'Challenges',
-      gallery: 'Gallery',
+      problemSolved: 'Problem Solved',
+      architecture: 'Architecture',
+      tools: 'Tools',
+      screenshots: 'Screenshots',
     },
     about: {
       title: 'About Me',
