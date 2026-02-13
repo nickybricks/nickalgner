@@ -41,7 +41,7 @@ export const AboutSection = () => {
 
           {/* Content with generous spacing */}
           <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-foreground">
               {t.title}
             </h1>
             
