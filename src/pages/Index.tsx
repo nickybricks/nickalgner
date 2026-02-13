@@ -30,7 +30,7 @@ const Index = () => {
         {/* About Section */}
         <section id="about" className="py-24 pt-[76px]">
           <div>
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-12">
+            <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-12">
               {t.about.title}
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
@@ -51,7 +51,7 @@ const Index = () => {
                 <p className="text-muted-foreground leading-relaxed">{t.about.journey}</p>
 
                 <div className="pt-6">
-                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-4">
+                  <h3 className="text-sm font-medium text-muted-foreground tracking-widest mb-4">
                     {t.about.capabilities}
                   </h3>
                   <div className="flex flex-wrap gap-2">

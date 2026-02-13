@@ -9,7 +9,7 @@ export const ContactSection = () => {
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-6">
+            <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6">
               {t.contact.title}
             </h2>
             <p className="text-2xl md:text-3xl font-light text-foreground mb-8">
@@ -24,7 +24,7 @@ export const ContactSection = () => {
             </a>
           </div>
           <div>
-            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-6">
+            <h3 className="text-sm font-medium text-muted-foreground tracking-widest mb-6">
               {t.contact.elsewhere}
             </h3>
             <div className="flex flex-col gap-4">

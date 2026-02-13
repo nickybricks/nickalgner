@@ -59,7 +59,7 @@ const ProjectDetail = () => {
         <div className="min-h-screen bg-background">
           <Header />
           <div className="container flex flex-col items-center justify-center px-4 py-20">
-            <h1 className="text-2xl font-light text-foreground">Project not found</h1>
+            <h1 className="text-2xl font-semibold text-foreground">Project not found</h1>
             <Button variant="ghost" onClick={() => navigate('/')} className="mt-4">
               <ArrowLeft className="mr-2 h-4 w-4" />
               {t.projectDetail.back}
@@ -133,7 +133,7 @@ const ProjectDetail = () => {
 
             {/* Mobile Content */}
             <div className="mt-10 space-y-6">
-              <h1 className="text-2xl md:text-3xl font-light text-foreground">
+              <h1 className="text-2xl md:text-3xl font-semibold text-foreground">
                 {project.name}
               </h1>
               <p className="text-base leading-relaxed text-muted-foreground">
@@ -154,7 +154,7 @@ const ProjectDetail = () => {
 
               {/* Challenges as numbered list */}
               <section className="pt-6 pb-12">
-                <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-6">
+                <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-6">
                   {t.projectDetail.challenges}
                 </h2>
                 <ol className="space-y-4">
@@ -198,7 +198,7 @@ const ProjectDetail = () => {
               {/* Right Column - Content with generous spacing */}
               <div className="lg:sticky lg:top-24 lg:self-start space-y-8">
                 <div className="space-y-6">
-                  <h1 className="text-4xl lg:text-5xl font-light text-foreground">
+                  <h1 className="text-4xl lg:text-5xl font-semibold text-foreground">
                     {project.name}
                   </h1>
                   <p className="text-lg leading-relaxed text-muted-foreground">
@@ -220,9 +220,9 @@ const ProjectDetail = () => {
 
                 {/* Challenges as numbered list - japanese style */}
                 <section className="pt-8">
-                  <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-8">
-                    {t.projectDetail.challenges}
-                  </h2>
+                   <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-8">
+                     {t.projectDetail.challenges}
+                   </h2>
                   <ol className="space-y-5">
                     {project.challenges[language].map((challenge, index) => (
                       <li
@@ -243,9 +243,9 @@ const ProjectDetail = () => {
             {/* Full Width Gallery - Remaining Images */}
             {project.images.length > 4 && (
               <section className="mt-20 pb-16">
-                <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-8">
-                  {t.projectDetail.gallery}
-                </h2>
+                 <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-8">
+                   {t.projectDetail.gallery}
+                 </h2>
                 <div className="grid gap-8 md:grid-cols-2">
                   {project.images.slice(4).map((image, index) => (
                     <div

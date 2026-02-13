@@ -44,7 +44,7 @@ export const HeroSection = () => {
   return (
     <section id="work" className="pt-12 md:pt-20 pb-16 md:pb-24">
       <div>
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground mb-10 md:mb-16 max-w-2xl">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-10 md:mb-16 max-w-2xl">
           {t.hero.tagline}
         </h1>
 

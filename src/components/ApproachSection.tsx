@@ -6,7 +6,7 @@ export const ApproachSection = () => {
   return (
     <section id="approach" className="py-24">
       <div>
-        <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-12">
+        <h2 className="text-sm font-medium text-muted-foreground tracking-widest mb-12">
           {t.approach.title}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
